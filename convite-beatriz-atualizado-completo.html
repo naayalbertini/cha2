@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/32/16171/16171729.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/16/16171/16171729.png">
+
+<title>Chá de Fraldas da Beatriz</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#f7f2ff,#ece4ff,#faf7ff);
+  color:#5b4673;
+}
+
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:25px 15px 60px;
+}
+
+.hero{
+  min-height:95vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.convite-card{
+  background:rgba(255,255,255,.96);
+  border-radius:35px;
+  padding:45px 25px;
+  box-shadow:0 25px 60px rgba(120,90,180,.20);
+  border:2px solid #d9c8ff;
+  max-width:720px;
+  width:100%;
+  position:relative;
+}
+
+.convite-card::before{
+  content:"🌸";
+  position:absolute;
+  top:-25px;
+  left:25px;
+  font-size:45px;
+}
+
+.convite-card::after{
+  content:"🍼";
+  position:absolute;
+  bottom:-25px;
+  right:25px;
+  font-size:45px;
+}
+
+.tag{
+  display:inline-block;
+  background:#efe5ff;
+  color:#7a4fc9;
+  padding:8px 20px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+h1{
+  font-family:Georgia,serif;
+  font-size:46px;
+  color:#7a4fc9;
+  margin-bottom:15px;
+}
+
+.nome{
+  font-size:58px;
+  font-family:Georgia,serif;
+  color:#9b6dff;
+  margin:10px 0;
+}
+
+.frase{
+  font-size:18px;
+  line-height:1.8;
+  margin:20px auto;
+  max-width:650px;
+}
+
+.btn{
+  border:none;
+  padding:14px 28px;
+  border-radius:50px;
+  background:linear-gradient(135deg,#8b5cf6,#b794ff);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:8px;
+  box-shadow:0 10px 25px rgba(139,92,246,.35);
+  transition:.3s;
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+section{margin-bottom:28px}
+
+.card{
+  background:rgba(255,255,255,.96);
+  border-radius:30px;
+  padding:30px;
+  box-shadow:0 15px 35px rgba(120,90,180,.14);
+  border:1px solid #d9c8ff;
+}
+
+.titulo{
+  text-align:center;
+  font-family:Georgia,serif;
+  color:#7a4fc9;
+  font-size:32px;
+  margin-bottom:25px;
+}
+
+.info-evento{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  text-align:center;
+}
+
+.info-box{
+  background:linear-gradient(135deg,#f9f5ff,#eee5ff);
+  padding:22px 16px;
+  border-radius:22px;
+  border:1px solid #d8c6ff;
+  box-shadow:0 8px 18px rgba(120,90,180,.08);
+}
+
+.info-box strong{
+  display:block;
+  color:#7a4fc9;
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.info-box span{
+  font-size:18px;
+  line-height:1.6;
+}
+
+.programacao{
+  display:grid;
+  gap:15px;
+}
+
+.programa{
+  display:flex;
+  gap:15px;
+  align-items:center;
+  background:#f9f5ff;
+  border-radius:20px;
+  padding:16px;
+  border-left:6px solid #9b6dff;
+  text-align:left;
+}
+
+.icone{font-size:28px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+}
+
+.box{
+  background:#faf7ff;
+  border-radius:22px;
+  padding:20px;
+  border:1px solid #d8c6ff;
+  box-shadow:0 8px 18px rgba(120,90,180,.08);
+}
+
+.box h3{
+  color:#7a4fc9;
+  margin-bottom:12px;
+}
+
+ul{list-style:none}
+li{margin:8px 0}
+li::before{content:"🌸 "}
+
+.fraldas{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:15px;
+  text-align:center;
+}
+
+.fralda{
+  background:linear-gradient(135deg,#eee5ff,#fffaff);
+  border-radius:25px;
+  padding:24px 10px;
+  border:1px solid #d8c6ff;
+}
+
+.fralda span{
+  display:block;
+  font-size:40px;
+  font-weight:bold;
+  color:#9b6dff;
+}
+
+.links a{
+  display:block;
+  background:#f9f5ff;
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:18px;
+  color:#6f4bb8;
+  font-weight:600;
+  text-decoration:none;
+  border:1px solid #d8c6ff;
+}
+
+.confirmacao{
+  background:linear-gradient(135deg,#fbf8ff,#eee5ff);
+}
+
+.form{
+  display:grid;
+  gap:15px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid #cbb8ff;
+  font-size:15px;
+  outline:none;
+  background:white;
+}
+
+textarea{
+  resize:none;
+  height:90px;
+}
+
+.aviso-fralda{
+  display:none;
+  background:#f4edff;
+  color:#6f4bb8;
+  padding:14px;
+  border-radius:16px;
+  font-weight:bold;
+  text-align:center;
+  line-height:1.6;
+}
+
+.rodape{
+  text-align:center;
+  font-size:18px;
+  line-height:1.8;
+}
+
+.assinatura{
+  font-family:Georgia,serif;
+  font-size:28px;
+  color:#7a4fc9;
+  margin-top:20px;
+}
+
+#conteudo{display:none}
+
+.modal-sucesso{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(60,45,90,.55);
+  backdrop-filter:blur(5px);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal-card{
+  background:linear-gradient(135deg,#fff7fb,#ffe4ef);
+  border-radius:28px;
+  padding:35px 25px;
+  max-width:430px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(80,60,130,.30);
+  border:1px solid #d8c6ff;
+  animation:modalShow .45s ease;
+}
+
+.modal-card .coracao{
+  font-size:48px;
+  margin-bottom:12px;
+}
+
+.modal-card h2{
+  font-family:Georgia,serif;
+  color:#7a4fc9;
+  font-size:26px;
+  margin-bottom:15px;
+}
+
+.modal-card p{
+  color:#5b4673;
+  font-size:17px;
+  line-height:1.7;
+}
+
+.modal-card button{
+  margin-top:22px;
+  border:none;
+  padding:13px 26px;
+  border-radius:50px;
+  background:linear-gradient(135deg,#8b5cf6,#b794ff);
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(139,92,246,.30);
+}
+
+@keyframes modalShow{
+  from{
+    opacity:0;
+    transform:scale(.9) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+@media(max-width:600px){
+  h1{font-size:34px}
+  .nome{font-size:45px}
+  .card{padding:22px 16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="convite-card">
+      <span class="tag">Você é nosso convidado especial</span>
+
+      <h1>Chá de Fraldas</h1>
+      <div class="nome">Beatriz</div>
+
+      <p class="frase">
+        Uma nova vida está chegando para encher nossos dias de amor, doçura e alegria.
+        Venha celebrar conosco esse momento tão especial da chegada da nossa pequena Bia.
+      </p>
+
+      <button class="btn" onclick="abrirConvite()">Abrir Convite 💌</button>
+    </div>
+  </div>
+
+  <div id="conteudo">
+
+    <section class="card">
+      <h2 class="titulo">📍 Informações do Evento</h2>
+
+      <div class="info-evento">
+        <div class="info-box">
+          <strong>📅 Data</strong>
+          <span>06/06</span>
+        </div>
+
+        <div class="info-box">
+          <strong>⏰ Horário</strong>
+          <span>12h</span>
+        </div>
+
+        <div class="info-box">
+          <strong>📍 Endereço</strong>
+          <span>
+            Ladeira de Nazaré, 16<br>
+            Edf Chopin, apt 404<br>
+            Nazaré, Salvador - BA
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="titulo">💖 Programação Especial</h2>
+
+      <div class="programacao">
+        <div class="programa"><div class="icone">🌸</div><div>Recepção dos convidados com muito carinho.</div></div>
+        <div class="programa"><div class="icone">🍼</div><div>Momento de boas-vindas para celebrar a chegada da Beatriz.</div></div>
+        <div class="programa"><div class="icone">🎀</div><div>Brincadeiras leves e divertidas com a mamãe.</div></div>
+        <div class="programa"><div class="icone">🍰</div><div>Lanche especial para compartilhar esse dia com pessoas queridas.</div></div>
+        <div class="programa"><div class="icone">🎁</div><div>Entrega dos presentes e mensagens de carinho.</div></div>
+        <div class="programa"><div class="icone">📸</div><div>Fotos para guardar essa lembrança linda.</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="titulo">🎁 Com carinho, para a nossa pequena Bia</h2>
+
+      <p style="text-align:center;font-size:18px;line-height:1.8;max-width:650px;margin:auto;">
+        A chegada da nossa pequena <strong>Beatriz</strong> está enchendo nossos corações de amor,
+        alegria e muita expectativa. 💖<br><br>
+        Pensando nos primeiros meses dessa nova fase tão especial,
+        preparamos com carinho uma sugestão de presentes para nos ajudar nesse comecinho.
+      </p>
+
+      <div class="fraldas" style="margin-top:25px;">
+        <div class="fralda"><span>P</span>11 pacotes</div>
+        <div class="fralda"><span>M</span>8 pacotes</div>
+        <div class="fralda"><span>G</span>20 pacotes</div>
+      </div>
+
+      <div class="box" style="margin-top:25px;text-align:center;">
+        <strong>🍼 Marcas sugeridas</strong><br><br>
+        Huggies Natural Care ou Derma Care<br>
+        Pampers Confort Sec<br>
+        Babysec Premium
+      </div>
+
+      <p style="margin-top:30px;text-align:center;font-size:17px;line-height:1.8;">
+        ✨ Nosso enxoval ainda está sendo preparado com muito amor.<br>
+        Se desejar nos presentear com outros itens, deixamos aqui algumas sugestões do que ainda falta:
+      </p>
+
+      <div class="grid" style="margin-top:20px;">
+        <div class="box">
+          <h3>👶 Tamanho P</h3>
+          <ul>
+            <li>1 macacão com zíper</li>
+            <li>3 calças</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>👶 Tamanho M</h3>
+          <ul>
+            <li>3 bodys manga longa</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>👶 Tamanho G</h3>
+          <ul>
+            <li>3 bodys manga curta</li>
+            <li>2 macacões com zíper</li>
+            <li>4 pijamas</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>🧺 Outros itens</h3>
+          <ul>
+            <li>Kit panos de boca</li>
+            <li>Mantas, exceto rosa e vermelha</li>
+            <li>Sapatinhos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top:25px;">
+        <h3>🍼 Itens especiais</h3>
+
+        <div class="links">
+          <a href="https://meli.la/1hZfC7v" target="_blank">🗑️ Lixeira anti odor rosa ou branca</a>
+          <a href="https://s.shopee.com.br/2g7KkliFZ6?share_channel_code=1" target="_blank">📹 Babá eletrônica</a>
+          <a href="https://a.co/d/0dzlc0hM" target="_blank">🍼 Mamadeira Philips Avent</a>
+          <a href="https://br.shp.ee/R3qcoN6J" target="_blank">🎶 Aparelho de ruído branco</a>
+          <a href="https://a.co/d/04XPr6wx" target="_blank">🧴 Sabonete líquido Mustela Gel Lavante</a>
+          <a href="https://a.co/d/03EabArC" target="_blank">🧴 Hidratante corporal Mustela</a>
+        </div>
+
+        <p style="margin-top:10px;">
+          💕 Pomada para assadura: Bepantol Baby ou Bepantriz
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:30px;font-size:18px;line-height:1.8;">
+        Mais do que qualquer presente, a sua presença é o que realmente vai tornar esse momento inesquecível para nós. ✨
+      </p>
+    </section>
+
+    <section class="card confirmacao">
+      <h2 class="titulo">📲 Confirmação de Presença</h2>
+
+      <p style="text-align:center;line-height:1.7;margin-bottom:20px;">
+        Para nos ajudar a organizar tudo com carinho, confirme sua presença abaixo.
+      </p>
+
+      <form class="form" id="formConfirmacao">
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+        <select id="presenca" required>
+          <option value="">Você irá participar?</option>
+          <option value="Sim">Sim, vou participar 💖</option>
+          <option value="Não">Não poderei ir 😢</option>
+        </select>
+
+        <select id="fralda">
+          <option value="">Escolha uma sugestão de presente</option>
+          <option value="P">Fralda P</option>
+          <option value="M">Fralda M</option>
+          <option value="G">Fralda G</option>
+        </select>
+
+        <div id="avisoFralda" class="aviso-fralda"></div>
+
+        <textarea id="obs" placeholder="Mensagem ou observação opcional"></textarea>
+
+        <button class="btn" type="submit">Confirmar Presença</button>
+      </form>
+    </section>
+
+    <section class="card rodape">
+      <p>
+        Agradecemos por fazer parte desse momento tão especial.
+        Sua presença e seu carinho tornam a chegada da nossa pequena Beatriz ainda mais abençoada.
+      </p>
+
+      <div class="assinatura">
+        Com todo o nosso amor,<br>
+        Tharita, Márcio e Beatriz 🌼
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div id="modalSucesso" class="modal-sucesso">
+  <div class="modal-card">
+    <div class="coracao">💖</div>
+
+    <h2>Sua confirmação foi recebida com carinho!</h2>
+
+    <p>
+      Obrigada por fazer parte desse momento especial da nossa pequena Beatriz. 🌸
+    </p>
+
+    <button onclick="fecharModal()">Fechar 💕</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  runTransaction,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCsWLvOpepmZdKAn8_vw98SKlnQ27_zSzY",
+  authDomain: "chadefralda2.firebaseapp.com",
+  projectId: "chadefralda2",
+  storageBucket: "chadefralda2.firebasestorage.app",
+  messagingSenderId: "900592246680",
+  appId: "1:900592246680:web:1b917dd3c7bc693bdbd5ed",
+  measurementId: "G-QP0ZN1K0KZ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const limites = {
+  P: 11,
+  M: 8,
+  G: 20
+};
+
+const controleRef = doc(db, "controle", "fraldas");
+
+window.abrirConvite = function() {
+  document.getElementById("conteudo").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("conteudo").scrollIntoView({ behavior: "smooth" });
+  }, 200);
+};
+
+window.fecharModal = function() {
+  document.getElementById("modalSucesso").style.display = "none";
+};
+
+async function criarControleSeNaoExistir() {
+  const snap = await getDoc(controleRef);
+
+  if (!snap.exists()) {
+    await setDoc(controleRef, {
+      P: 0,
+      M: 0,
+      G: 0
+    });
+  }
+}
+
+function atualizarOpcoesFraldas(dados) {
+  const select = document.getElementById("fralda");
+  const aviso = document.getElementById("avisoFralda");
+  const disponiveis = [];
+
+  ["P", "M", "G"].forEach(tamanho => {
+    const usado = dados[tamanho] || 0;
+    const limite = limites[tamanho];
+    const option = select.querySelector(`option[value="${tamanho}"]`);
+
+    if (!option) return;
+
+    if (usado >= limite) {
+      option.disabled = true;
+      option.textContent = `Fralda ${tamanho} - esgotada`;
+    } else {
+      option.disabled = false;
+      option.textContent = `Fralda ${tamanho} - disponível (${limite - usado})`;
+      disponiveis.push(`Fralda ${tamanho}`);
+    }
+  });
+
+  aviso.style.display = "block";
+
+  if (disponiveis.length > 0) {
+    aviso.innerHTML = `
+      💕 Fraldas disponíveis no momento:<br>
+      ${disponiveis.join(" • ")}
+    `;
+  } else {
+    aviso.innerHTML = `
+      Todas as opções de fraldas já foram escolhidas.
+      Você pode selecionar outro presente.
+    `;
+  }
+}
+
+await criarControleSeNaoExistir();
+
+onSnapshot(controleRef, (snap) => {
+  if (snap.exists()) {
+    atualizarOpcoesFraldas(snap.data());
+  }
+});
+
+const form = document.getElementById("formConfirmacao");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const nome = document.getElementById("nome").value.trim();
+  const presenca = document.getElementById("presenca").value;
+  const fralda = document.getElementById("fralda").value;
+  const obs = document.getElementById("obs").value.trim();
+
+  if (!nome || !presenca) {
+    alert("Preencha seu nome e escolha se irá participar.");
+    return;
+  }
+
+  if (presenca === "Sim" && !fralda) {
+    alert("Escolha uma sugestão de fralda ou presente.");
+    return;
+  }
+
+  try {
+    await runTransaction(db, async (transaction) => {
+      const controleSnap = await transaction.get(controleRef);
+
+      let controle = {
+        P: 0,
+        M: 0,
+        G: 0
+      };
+
+      if (controleSnap.exists()) {
+        controle = controleSnap.data();
+      }
+
+      if (["P", "M", "G"].includes(fralda)) {
+        const quantidadeAtual = controle[fralda] || 0;
+        const limite = limites[fralda];
+
+        if (quantidadeAtual >= limite) {
+          throw new Error(
+            `A fralda ${fralda} já foi escolhida por outro convidado. Escolha uma das opções disponíveis.`
+          );
+        }
+
+        transaction.update(controleRef, {
+          [fralda]: quantidadeAtual + 1
+        });
+      }
+
+      const novaConfirmacaoRef = doc(collection(db, "confirmacoes"));
+
+      transaction.set(novaConfirmacaoRef, {
+        nome: nome,
+        presenca: presenca,
+        fralda: fralda || "Não informado",
+        observacao: obs || "",
+        criadoEm: serverTimestamp()
+      });
+    });
+
+    form.reset();
+    document.getElementById("modalSucesso").style.display = "flex";
+
+  } catch (error) {
+    console.error("ERRO FIREBASE:", error);
+    alert(error.message);
+  }
+});
+</script>
+
+</body>
+</html>
