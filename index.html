@@ -226,6 +226,94 @@ li::before{content:"🌸 "}
   border:1px solid #d8c6ff;
 }
 
+.presente-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  background:#f9f5ff;
+  padding:14px 18px;
+  margin:10px 0;
+  border-radius:18px;
+  color:#6f4bb8;
+  font-weight:600;
+  text-decoration:none;
+  border:1px solid #d8c6ff;
+}
+
+.presente-card a{
+  color:#6f4bb8;
+  text-decoration:none;
+}
+
+.presente-status{
+  font-size:13px;
+  white-space:nowrap;
+  padding:6px 10px;
+  border-radius:50px;
+  background:#efe5ff;
+  color:#7a4fc9;
+}
+
+.presente-card.esgotado{
+  opacity:.55;
+  filter:grayscale(.25);
+}
+
+.presente-card.esgotado .presente-status{
+  background:#f1e6e6;
+  color:#9b4d4d;
+}
+
+.painel-admin{
+  display:none;
+}
+
+.painel-admin.ativo{
+  display:block;
+}
+
+.tabela-wrap{
+  overflow-x:auto;
+}
+
+.tabela-painel{
+  width:100%;
+  border-collapse:collapse;
+  min-width:720px;
+}
+
+.tabela-painel th,
+.tabela-painel td{
+  padding:12px;
+  border-bottom:1px solid #e1d4ff;
+  text-align:left;
+  vertical-align:top;
+}
+
+.tabela-painel th{
+  color:#7a4fc9;
+  background:#f4edff;
+}
+
+.resumo-painel{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.resumo-item{
+  background:#f9f5ff;
+  border:1px solid #d8c6ff;
+  border-radius:18px;
+  padding:14px;
+  text-align:center;
+  font-weight:bold;
+  color:#7a4fc9;
+}
+
+
 .confirmacao{
   background:linear-gradient(135deg,#fbf8ff,#eee5ff);
 }
@@ -249,6 +337,9 @@ textarea{
   resize:none;
   height:90px;
 }
+
+
+.ajuda-campo{font-size:13px;color:#7a4fc9;margin-top:-8px;line-height:1.5}
 
 .aviso-fralda{
   display:none;
@@ -404,7 +495,7 @@ textarea{
         <div class="programa"><div class="icone">🌸</div><div>Recepção dos convidados com muito carinho.</div></div>
         <div class="programa"><div class="icone">🍼</div><div>Momento de boas-vindas para celebrar a chegada da Beatriz.</div></div>
         <div class="programa"><div class="icone">🎀</div><div>Brincadeiras leves e divertidas com a mamãe.</div></div>
-        <div class="programa"><div class="icone">🍰</div><div>Almoço especial para compartilhar esse dia com pessoas queridas.</div></div>
+        <div class="programa"><div class="icone">🍰</div><div>Lanche especial para compartilhar esse dia com pessoas queridas.</div></div>
         <div class="programa"><div class="icone">🎁</div><div>Entrega dos presentes e mensagens de carinho.</div></div>
         <div class="programa"><div class="icone">📸</div><div>Fotos para guardar essa lembrança linda.</div></div>
       </div>
@@ -476,18 +567,19 @@ textarea{
       <div class="box" style="margin-top:25px;">
         <h3>🍼 Itens especiais</h3>
 
-        <div class="links">
-          <a href="https://meli.la/2SyzFZA" target="_blank">🗑️ Lixeira anti odor rosa ou branca</a>
-          <a href="https://s.shopee.com.br/2g7KkliFZ6?share_channel_code=1" target="_blank">📹 Babá eletrônica</a>
-          <a href="https://a.co/d/0dzlc0hM" target="_blank">🍼 Mamadeira Philips Avent</a>
-          <a href="https://br.shp.ee/R3qcoN6J" target="_blank">🎶 Aparelho de ruído branco</a>
-          <a href="https://a.co/d/04XPr6wx" target="_blank">🧴 Sabonete líquido Mustela Gel Lavante</a>
-          <a href="https://a.co/d/03EabArC" target="_blank">🧴 Hidratante corporal Mustela</a>
-        </div>
-
-        <p style="margin-top:10px;">
-          💕 Pomada para assadura: Bepantol Baby ou Bepantriz
+        <p style="margin-bottom:12px;line-height:1.7;">
+          Ao confirmar presença, escolha um presente. Quando alguém escolher um item especial, ele ficará indisponível automaticamente para os próximos convidados.
         </p>
+
+        <div class="links" id="listaPresentesEspeciais">
+          <div class="presente-card" data-presente="lixeira"><a href="https://meli.la/1hZfC7v" target="_blank">🗑️ Lixeira anti odor rosa ou branca</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="baba-eletronica"><a href="https://s.shopee.com.br/2g7KkliFZ6?share_channel_code=1" target="_blank">📹 Babá eletrônica</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="mamadeira-avent"><a href="https://a.co/d/0dzlc0hM" target="_blank">🍼 Mamadeira Philips Avent</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="ruido-branco"><a href="https://br.shp.ee/R3qcoN6J" target="_blank">🎶 Aparelho de ruído branco</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="sabonete-mustela"><a href="https://a.co/d/04XPr6wx" target="_blank">🧴 Sabonete líquido Mustela Gel Lavante</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="hidratante-mustela"><a href="https://a.co/d/03EabArC" target="_blank">🧴 Hidratante corporal Mustela</a><span class="presente-status">Disponível</span></div>
+          <div class="presente-card" data-presente="pomada-assadura"><span>💕 Pomada para assadura: Bepantol Baby ou Bepantriz</span><span class="presente-status">Disponível</span></div>
+        </div>
       </div>
 
       <p style="text-align:center;margin-top:30px;font-size:18px;line-height:1.8;">
@@ -511,11 +603,21 @@ textarea{
           <option value="Não">Não poderei ir 😢</option>
         </select>
 
+        <div class="ajuda-campo" style="font-weight:bold;text-align:center;">
+          Você pode escolher uma fralda, um item especial ou os dois juntos.
+        </div>
+
+        <label for="fralda" style="font-weight:bold;color:#7a4fc9;">🍼 Fralda</label>
         <select id="fralda">
-          <option value="">Escolha uma sugestão de presente</option>
+          <option value="">Não vou levar fralda</option>
           <option value="P">Fralda P</option>
           <option value="M">Fralda M</option>
           <option value="G">Fralda G</option>
+        </select>
+
+        <label for="presenteEspecial" style="font-weight:bold;color:#7a4fc9;">🎁 Item especial</label>
+        <select id="presenteEspecial">
+          <option value="">Não vou levar item especial</option>
         </select>
 
         <div id="avisoFralda" class="aviso-fralda"></div>
@@ -524,6 +626,35 @@ textarea{
 
         <button class="btn" type="submit">Confirmar Presença</button>
       </form>
+    </section>
+
+
+    <section class="card painel-admin" id="painelAdmin">
+      <h2 class="titulo">📋 Painel de Confirmações</h2>
+      <p style="text-align:center;line-height:1.7;margin-bottom:18px;">
+        Área para a família acompanhar quem confirmou presença e qual presente foi escolhido.
+        Para abrir direto, use o final do link com <strong>#painel</strong>.
+      </p>
+
+      <div class="resumo-painel" id="resumoPainel"></div>
+
+      <div class="tabela-wrap">
+        <table class="tabela-painel">
+          <thead>
+            <tr>
+              <th>Convidado</th>
+              <th>Presença</th>
+              <th>Fralda</th>
+              <th>Item especial</th>
+              <th>Observação</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="listaConfirmacoes">
+            <tr><td colspan="6">Carregando confirmações...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card rodape">
@@ -581,47 +712,73 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const limites = {
-  P: 11,
-  M: 8,
-  G: 20
+const limitesFraldas = { P: 11, M: 8, G: 20 };
+
+const presentesEspeciais = {
+  "lixeira": "Lixeira anti odor rosa ou branca",
+  "baba-eletronica": "Babá eletrônica",
+  "mamadeira-avent": "Mamadeira Philips Avent",
+  "ruido-branco": "Aparelho de ruído branco",
+  "sabonete-mustela": "Sabonete líquido Mustela Gel Lavante",
+  "hidratante-mustela": "Hidratante corporal Mustela",
+  "pomada-assadura": "Pomada para assadura: Bepantol Baby ou Bepantriz"
 };
 
-const controleRef = doc(db, "controle", "fraldas");
+const controleFraldasRef = doc(db, "controle", "fraldas");
+const controlePresentesRef = doc(db, "controle", "presentes");
+const confirmacoesRef = collection(db, "confirmacoes");
+
+let cacheFraldas = {};
+let cachePresentes = {};
 
 window.abrirConvite = function() {
   document.getElementById("conteudo").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("conteudo").scrollIntoView({ behavior: "smooth" });
-  }, 200);
+  setTimeout(() => document.getElementById("conteudo").scrollIntoView({ behavior: "smooth" }), 200);
 };
 
 window.fecharModal = function() {
   document.getElementById("modalSucesso").style.display = "none";
 };
 
-async function criarControleSeNaoExistir() {
-  const snap = await getDoc(controleRef);
+function atualizarCamposTipoPresente() {
+  const tipo = document.getElementById("tipoPresente")?.value || "";
+  const campoFralda = document.getElementById("campoFralda");
+  const campoItemEspecial = document.getElementById("campoItemEspecial");
+  const fralda = document.getElementById("fralda");
+  const presenteEspecial = document.getElementById("presenteEspecial");
 
-  if (!snap.exists()) {
-    await setDoc(controleRef, {
-      P: 0,
-      M: 0,
-      G: 0
-    });
+  const mostrarFralda = tipo === "fralda" || tipo === "ambos";
+  const mostrarItem = tipo === "item" || tipo === "ambos";
+
+  if (campoFralda) campoFralda.classList.toggle("ativo", mostrarFralda);
+  if (campoItemEspecial) campoItemEspecial.classList.toggle("ativo", mostrarItem);
+
+  if (!mostrarFralda && fralda) fralda.value = "";
+  if (!mostrarItem && presenteEspecial) presenteEspecial.value = "";
+}
+
+async function criarControlesSeNaoExistirem() {
+  const fraldasSnap = await getDoc(controleFraldasRef);
+  if (!fraldasSnap.exists()) await setDoc(controleFraldasRef, { P: 0, M: 0, G: 0 });
+
+  const presentesSnap = await getDoc(controlePresentesRef);
+  if (!presentesSnap.exists()) {
+    const inicial = {};
+    Object.keys(presentesEspeciais).forEach(id => inicial[id] = 0);
+    await setDoc(controlePresentesRef, inicial);
   }
 }
 
-function atualizarOpcoesFraldas(dados) {
+function atualizarOpcoesFraldas(dados = {}) {
+  cacheFraldas = dados;
   const select = document.getElementById("fralda");
   const aviso = document.getElementById("avisoFralda");
   const disponiveis = [];
 
   ["P", "M", "G"].forEach(tamanho => {
     const usado = dados[tamanho] || 0;
-    const limite = limites[tamanho];
+    const limite = limitesFraldas[tamanho];
     const option = select.querySelector(`option[value="${tamanho}"]`);
-
     if (!option) return;
 
     if (usado >= limite) {
@@ -630,32 +787,112 @@ function atualizarOpcoesFraldas(dados) {
     } else {
       option.disabled = false;
       option.textContent = `Fralda ${tamanho} - disponível (${limite - usado})`;
-      disponiveis.push(`Fralda ${tamanho}`);
+      disponiveis.push(`Fralda ${tamanho}: ${limite - usado}`);
     }
   });
 
   aviso.style.display = "block";
+  aviso.innerHTML = disponiveis.length
+    ? `💕 Fraldas disponíveis no momento:<br>${disponiveis.join(" • ")}`
+    : `Todas as fraldas já foram escolhidas. Você pode selecionar um item especial.`;
+}
 
-  if (disponiveis.length > 0) {
-    aviso.innerHTML = `
-      💕 Fraldas disponíveis no momento:<br>
-      ${disponiveis.join(" • ")}
-    `;
-  } else {
-    aviso.innerHTML = `
-      Todas as opções de fraldas já foram escolhidas.
-      Você pode selecionar outro presente.
-    `;
+function atualizarOpcoesPresentes(dados = {}) {
+  cachePresentes = dados;
+  const select = document.getElementById("presenteEspecial");
+  const selecionado = select.value;
+  select.innerHTML = `<option value="">Escolha um item especial</option>`;
+
+  Object.entries(presentesEspeciais).forEach(([id, nome]) => {
+    const escolhido = (dados[id] || 0) >= 1;
+    const option = document.createElement("option");
+    option.value = id;
+    option.disabled = escolhido;
+    option.textContent = escolhido ? `${nome} - já escolhido` : `${nome} - disponível`;
+    select.appendChild(option);
+
+    const card = document.querySelector(`[data-presente="${id}"]`);
+    if (card) {
+      card.classList.toggle("esgotado", escolhido);
+      const status = card.querySelector(".presente-status");
+      if (status) status.textContent = escolhido ? "Já escolhido" : "Disponível";
+    }
+  });
+
+  if (selecionado && select.querySelector(`option[value="${selecionado}"]`) && !select.querySelector(`option[value="${selecionado}"]`).disabled) {
+    select.value = selecionado;
   }
 }
 
-await criarControleSeNaoExistir();
+function formatarData(timestamp) {
+  if (!timestamp || !timestamp.toDate) return "-";
+  return timestamp.toDate().toLocaleString("pt-BR");
+}
 
-onSnapshot(controleRef, (snap) => {
-  if (snap.exists()) {
-    atualizarOpcoesFraldas(snap.data());
+function montarPainel(confirmacoes) {
+  const corpo = document.getElementById("listaConfirmacoes");
+  const resumo = document.getElementById("resumoPainel");
+
+  const total = confirmacoes.length;
+  const sim = confirmacoes.filter(c => c.presenca === "Sim").length;
+  const nao = confirmacoes.filter(c => c.presenca === "Não").length;
+  const presentes = confirmacoes.filter(c => c.presenteEspecialNome && c.presenteEspecialNome !== "Não informado").length;
+
+  resumo.innerHTML = `
+    <div class="resumo-item">${total}<br><small>confirmações</small></div>
+    <div class="resumo-item">${sim}<br><small>vão participar</small></div>
+    <div class="resumo-item">${nao}<br><small>não poderão ir</small></div>
+    <div class="resumo-item">${presentes}<br><small>itens especiais escolhidos</small></div>
+  `;
+
+  if (!confirmacoes.length) {
+    corpo.innerHTML = `<tr><td colspan="6">Nenhuma confirmação recebida ainda.</td></tr>`;
+    return;
   }
+
+  corpo.innerHTML = confirmacoes.map(c => `
+    <tr>
+      <td>${c.nome || "-"}</td>
+      <td>${c.presenca || "-"}</td>
+      <td>${c.fralda ? `Fralda ${c.fralda}` : "Não informado"}</td>
+      <td>${c.presenteEspecialNome || c.presente || "Não informado"}</td>
+      <td>${c.observacao || "-"}</td>
+      <td>${formatarData(c.criadoEm)}</td>
+    </tr>
+  `).join("");
+}
+
+function ativarPainelSeNecessario() {
+  if (window.location.hash === "#painel") {
+    document.getElementById("conteudo").style.display = "block";
+    document.getElementById("painelAdmin").classList.add("ativo");
+    setTimeout(() => document.getElementById("painelAdmin").scrollIntoView({ behavior: "smooth" }), 300);
+  }
+}
+
+await criarControlesSeNaoExistirem();
+
+onSnapshot(controleFraldasRef, (snap) => {
+  if (snap.exists()) atualizarOpcoesFraldas(snap.data());
 });
+
+onSnapshot(controlePresentesRef, (snap) => {
+  if (snap.exists()) atualizarOpcoesPresentes(snap.data());
+});
+
+onSnapshot(confirmacoesRef, (snap) => {
+  const confirmacoes = [];
+  snap.forEach(docSnap => confirmacoes.push(docSnap.data()));
+  confirmacoes.sort((a, b) => {
+    const dataA = a.criadoEm?.seconds || 0;
+    const dataB = b.criadoEm?.seconds || 0;
+    return dataB - dataA;
+  });
+  montarPainel(confirmacoes);
+});
+
+ativarPainelSeNecessario();
+window.addEventListener("hashchange", ativarPainelSeNecessario);
 
 const form = document.getElementById("formConfirmacao");
 
@@ -665,6 +902,7 @@ form.addEventListener("submit", async function(e) {
   const nome = document.getElementById("nome").value.trim();
   const presenca = document.getElementById("presenca").value;
   const fralda = document.getElementById("fralda").value;
+  const presenteEspecial = document.getElementById("presenteEspecial").value;
   const obs = document.getElementById("obs").value.trim();
 
   if (!nome || !presenca) {
@@ -672,54 +910,76 @@ form.addEventListener("submit", async function(e) {
     return;
   }
 
-  if (presenca === "Sim" && !fralda) {
-    alert("Escolha uma sugestão de fralda ou presente.");
+  if (presenca === "Sim" && !fralda && !presenteEspecial) {
+    alert("Escolha uma fralda, um item especial ou os dois juntos.");
     return;
   }
 
   try {
     await runTransaction(db, async (transaction) => {
-      const controleSnap = await transaction.get(controleRef);
+      let fraldaFinal = "Não informado";
+      let presenteEspecialNome = "Não informado";
 
-      let controle = {
-        P: 0,
-        M: 0,
-        G: 0
-      };
+      // IMPORTANTE: no Firestore, todas as leituras da transação precisam acontecer
+      // antes de qualquer gravação. Por isso lemos os dois controles primeiro.
+      const controleFraldasSnap = await transaction.get(controleFraldasRef);
+      const controlePresentesSnap = await transaction.get(controlePresentesRef);
 
-      if (controleSnap.exists()) {
-        controle = controleSnap.data();
-      }
+      const controleFraldas = controleFraldasSnap.exists() ? controleFraldasSnap.data() : { P: 0, M: 0, G: 0 };
+      const controlePresentes = controlePresentesSnap.exists() ? controlePresentesSnap.data() : {};
 
-      if (["P", "M", "G"].includes(fralda)) {
-        const quantidadeAtual = controle[fralda] || 0;
-        const limite = limites[fralda];
+      if (presenca === "Sim" && fralda) {
+        const quantidadeAtual = controleFraldas[fralda] || 0;
+        const limite = limitesFraldas[fralda];
 
         if (quantidadeAtual >= limite) {
-          throw new Error(
-            `A fralda ${fralda} já foi escolhida por outro convidado. Escolha uma das opções disponíveis.`
-          );
+          throw new Error(`A fralda ${fralda} já esgotou. Escolha outra opção disponível.`);
         }
 
-        transaction.update(controleRef, {
-          [fralda]: quantidadeAtual + 1
-        });
+        fraldaFinal = `Fralda ${fralda}`;
       }
 
-      const novaConfirmacaoRef = doc(collection(db, "confirmacoes"));
+      if (presenca === "Sim" && presenteEspecial) {
+        const quantidadeAtual = controlePresentes[presenteEspecial] || 0;
 
+        if (quantidadeAtual >= 1) {
+          throw new Error(`Este item especial acabou de ser escolhido por outro convidado. Escolha outra opção disponível.`);
+        }
+
+        presenteEspecialNome = presentesEspeciais[presenteEspecial];
+      }
+
+      if (presenca === "Sim" && fralda) {
+        transaction.set(controleFraldasRef, {
+          [fralda]: (controleFraldas[fralda] || 0) + 1
+        }, { merge: true });
+      }
+
+      if (presenca === "Sim" && presenteEspecial) {
+        transaction.set(controlePresentesRef, {
+          [presenteEspecial]: (controlePresentes[presenteEspecial] || 0) + 1
+        }, { merge: true });
+      }
+
+      const novaConfirmacaoRef = doc(confirmacoesRef);
       transaction.set(novaConfirmacaoRef, {
-        nome: nome,
-        presenca: presenca,
-        fralda: fralda || "Não informado",
+        nome,
+        presenca,
+        tipoPresente: presenca === "Sim" ? (fralda && presenteEspecial ? "ambos" : fralda ? "fralda" : presenteEspecial ? "item" : "") : "",
+        fralda: presenca === "Sim" && fralda ? fralda : "",
+        fraldaNome: fraldaFinal,
+        presenteId: presenca === "Sim" && presenteEspecial ? presenteEspecial : "",
+        presenteEspecialNome,
+        presente: presenteEspecialNome,
         observacao: obs || "",
         criadoEm: serverTimestamp()
       });
     });
 
     form.reset();
+    atualizarOpcoesFraldas(cacheFraldas);
+    atualizarOpcoesPresentes(cachePresentes);
     document.getElementById("modalSucesso").style.display = "flex";
-
   } catch (error) {
     console.error("ERRO FIREBASE:", error);
     alert(error.message);
